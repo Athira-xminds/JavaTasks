@@ -26,7 +26,9 @@ public class LibraryManagement {
             System.out.println("2. Search book");
             System.out.println("3. Display books in upper case");
             System.out.println("4. Count Books");
-            System.out.println("5. Logout");
+            System.out.println("5. To check book name starts wIth certain word");
+            System.out.println("6. To check book name contains certain word");
+            System.out.println("7. Logout");
             System.out.print("Choose any above options: ");
             option = sc.nextInt();
             sc.nextLine();
@@ -66,9 +68,36 @@ public class LibraryManagement {
                     System.out.println("Number of books: " + (count));
                     break;
                 case 5:
+                    System.out.print("Enter a string :");
+                    String startWord = sc.nextLine();
+                    boolean isStartswith = false;
+                    for (int i = 0; (i <= count-1); i++) {
+                        if (books[i].startsWith(startWord)) {
+                            System.out.println(books[i] +" starts with "+startWord);
+                            isStartswith = true;
+                        }
+                    }
+                    if(!isStartswith){
+                        System.out.println("No book name startswith "+startWord);
+                    }
+                    break;
+                case 6:
+                    System.out.print("Enter a string :");
+                    String word = sc.nextLine();
+                    boolean isContains = false;
+                    for (int i = 0; (i <= count-1); i++) {
+                        if (books[i].contains(word)) {
+                            System.out.println(books[i] +" contains "+word);
+                            isContains = true;
+                        }
+                    }
+                    if(!isContains){
+                        System.out.println("No book name contains "+word);
+                    }
+                    break;
+                case 7:
                     System.out.println("Thank you");
                     break;
-
                 default:
                     System.out.println("Invalid choice");
 
