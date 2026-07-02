@@ -21,22 +21,25 @@
 //Display an appropriate message if the balance is insufficient.
 
 package Bank;
-
-public class BankAccount {
+public class BankAccount implements Transaction {
     String accountNumber;
     String customerName;
     double balance;
-    public BankAccount(){
+
+    public BankAccount() {
 
     }
-    public BankAccount(String bankAccountNumber){
+
+    public BankAccount(String bankAccountNumber) {
         accountNumber = bankAccountNumber;
     }
-    public BankAccount(String bankAccountNumber, String bankCustomerName, double bankBalance){
+
+    public BankAccount(String bankAccountNumber, String bankCustomerName, double bankBalance) {
         accountNumber = bankAccountNumber;
         customerName = bankCustomerName;
         balance = bankBalance;
     }
+
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -45,6 +48,7 @@ public class BankAccount {
             System.out.println("Enter a valid amount");
         }
     }
+
     public void deposit(int amount) {
         if (amount > 0) {
             balance += amount;
@@ -53,6 +57,7 @@ public class BankAccount {
             System.out.println("Enter a valid amount");
         }
     }
+
     public void withdraw(double amount) {
         if (balance >= amount) {
             balance -= amount;
@@ -61,6 +66,7 @@ public class BankAccount {
             System.out.println("Insufficient balance. Available balance " + balance);
         }
     }
+
     public void withdraw(int amount) {
         if (balance >= amount) {
             balance -= amount;
@@ -69,9 +75,11 @@ public class BankAccount {
             System.out.println("Insufficient balance. Available balance " + balance);
         }
     }
+
     public void displayBalance() {
         System.out.println("Account Number: " + accountNumber + "\n" + "Current Balance: " + balance);
     }
+
     public void displayAccount() {
         System.out.println("Account Information :");
         System.out.println("Account Number : " + accountNumber);
@@ -80,24 +88,21 @@ public class BankAccount {
         System.out.println("\n");
     }
     public static void main(String[] args) {
-        BankAccount acc1 = new BankAccount();
-        acc1.displayAccount();
-
-        BankAccount acc2 = new BankAccount("ABC99823");
-        acc2.displayAccount();
-
-        BankAccount acc3 = new BankAccount("ABC10293", "RAM", 500.00);
-        acc3.displayAccount();
-        System.out.println("_________________________________________");
-        acc3.deposit(150);
-        acc3.deposit(25.50);
-        acc3.displayBalance();
-        System.out.println("_________________________________________");
-        acc3.withdraw(100);
-        acc3.withdraw(50.25);
-        acc3.displayBalance();
-        System.out.println("_________________________________________");
-        acc3.withdraw(1000);
-        acc3.displayBalance();
+        BankAccount account1 = new BankAccount();
+        account1.displayAccount();
+        BankAccount account2 = new BankAccount("ABC99823");
+        account2.displayAccount();
+        BankAccount account3 = new BankAccount("ABC10293", "RAM", 500.00);
+        account3.displayAccount();
+        account3.deposit(150);
+        account3.deposit(25.75);
+        account3.displayBalance();
+        account3.withdraw(100);
+        account3.withdraw(50.45);
+        account3.displayBalance();
+        account3.withdraw(10.00);
+        account3.displayBalance();
+        account3.withdraw(1000.00);
+        account3.displayBalance();
     }
 }
