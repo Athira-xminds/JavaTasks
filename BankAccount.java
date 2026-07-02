@@ -58,7 +58,10 @@ public class BankAccount implements Transaction {
     }
 
     public void withdraw(double amount) {
-        if (balance >= amount) {
+        if (amount < 0){
+            System.out.println("Enter a valid amount");
+        }
+        else if (balance >= amount) {
             balance -= amount;
             System.out.println("Debited amount: " + amount);
         } else {
@@ -67,7 +70,10 @@ public class BankAccount implements Transaction {
     }
 
     public void withdraw(int amount) {
-        if (balance >= amount) {
+        if (amount < 0){
+            System.out.println("Enter a valid amount");
+        }
+        else if (balance >= amount) {
             balance -= amount;
             System.out.println("Debited amount: " + amount);
         } else {

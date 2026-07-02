@@ -12,13 +12,15 @@ public class CurrentAccount extends BankAccount {
         }
     }
     public void withdraw(double amount) {
-        if (amount <= 0) {
+        if (amount < 0) {
             System.out.println("Invalid withdrawal amount.");
-            return;
         }
-        else {
+        else if (this.balance >= amount) {
             this.balance -= amount;
             System.out.println("Amount debited " + amount + " \n New Balance: " + this.balance);
+        }
+        else {
+            System.out.println("Insufficient  in your current account. Available balance " + balance);
         }
     }
     public void displayAccount() {
