@@ -17,7 +17,7 @@ public class Student {
     public Student(String id, String name, String email) {
         this.id = id;
         this.name = name;
-        if (email.isEmpty() || !email.endsWith(".com")) {
+        if (email.isEmpty() || !email.endsWith(".com") || !email.contains("@")) {
             this.email = null;
         } else {
             this.email = email;
