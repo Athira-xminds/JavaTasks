@@ -27,7 +27,6 @@ class Courses implements Runnable {
         String threadName = Thread.currentThread().getName();
         System.out.println(threadName + " started processing. Start Date: " + startingDate + " of " + courseName);
         try {
-            // Simulating task processing time
             Thread.sleep(2000);
         } catch (InterruptedException e) {
         }
@@ -49,6 +48,6 @@ public class OnlineLearningPlatform {
             Thread.sleep(30000);
         } catch (InterruptedException e) {
         }
-        courseSchedules.shutdownNow();
+        courseSchedules.shutdown();
     }
 }
