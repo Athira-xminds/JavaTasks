@@ -23,16 +23,16 @@ public class FoodDeliveryApp {
             System.out.println(Thread.currentThread().getName()+": Started preparing food");
             try {
                 Thread.sleep(5000);
-                System.out.println(Thread.currentThread().getName()+": Food preparation finished.");
+                System.out.println(Thread.currentThread().getName()+": Food preparation finished");
             } catch (InterruptedException e) {
-                System.out.println("Preparation interrupted."+ e);
+                System.out.println("Preparation interrupted"+ e);
             }
         });
 
         simulateThreadTask("Generating bill");
         simulateThreadTask("Sending order confirmation");
         foodPreparation.join();
-        System.out.println("Order is ready for delivery.");
+        System.out.println("Order is ready for delivery");
     }
 }
 
