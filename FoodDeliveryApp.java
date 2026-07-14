@@ -11,28 +11,67 @@
  Finally, display "Order is ready for delivery."
  */
 
+//import java.util.concurrent.CompletableFuture;
+
+//public class FoodDeliveryApp {
+//     static void simulateThreadTask(String taskMessage) {
+//        System.out.println(Thread.currentThread().getName()+":"+taskMessage);
+//    }
+//    public static void main(String[] args) {
+//        System.out.println("Customer placed an order");
+//        CompletableFuture<Void> foodPreparation = CompletableFuture.runAsync(() -> {
+//            System.out.println(Thread.currentThread().getName()+": Started preparing food");
+//            try {
+//                Thread.sleep(5000);
+//                System.out.println(Thread.currentThread().getName()+": Food preparation finished");
+//            } catch (InterruptedException e) {
+//                System.out.println("Preparation interrupted"+ e);
+//            }
+//        });
+//
+//        simulateThreadTask("Generating bill");
+//        simulateThreadTask("Sending order confirmation");
+//        foodPreparation.join();
+//        System.out.println("Order is ready for delivery");
+//    }
+//}
+
+
+
+/**
+ With FixedThreadPool
+ */
+
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class FoodDeliveryApp {
-     static void simulateThreadTask(String taskMessage) {
-        System.out.println(Thread.currentThread().getName()+":"+taskMessage);
+    static void simulateThreadTask(String taskMessage) {
+        System.out.println(Thread.currentThread().getName() + ": " + taskMessage);
     }
+
     public static void main(String[] args) {
-        System.out.println("Customer placed an order");
+        ExecutorService threadPool = Executors.newFixedThreadPool(2);
+
+        System.out.println(Thread.currentThread().getName() + ": Customer placed an order");
         CompletableFuture<Void> foodPreparation = CompletableFuture.runAsync(() -> {
-            System.out.println(Thread.currentThread().getName()+": Started preparing food");
+            System.out.println(Thread.currentThread().getName() + ": Started preparing food");
             try {
                 Thread.sleep(5000);
-                System.out.println(Thread.currentThread().getName()+": Food preparation finished");
+                System.out.println(Thread.currentThread().getName() + ": Food preparation finished");
             } catch (InterruptedException e) {
-                System.out.println("Preparation interrupted"+ e);
+                System.out.println("Preparation interrupted: " + e);
             }
-        });
-
-        simulateThreadTask("Generating bill");
-        simulateThreadTask("Sending order confirmation");
+        }, threadPool);
+        CompletableFuture<Void> orderProcessing = CompletableFuture.runAsync(() -> {
+            simulateThreadTask("Generating bill");
+            simulateThreadTask("Sending order confirmation");
+        }, threadPool);
         foodPreparation.join();
-        System.out.println("Order is ready for delivery");
+        orderProcessing.join();
+        System.out.println(Thread.currentThread().getName() + ": Order is ready for delivery");
+        threadPool.shutdown();
     }
 }
 
