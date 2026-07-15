@@ -20,7 +20,7 @@ public class OnlineShoppingInventory {
         CompletableFuture<Void> laptopTask = CompletableFuture.runAsync(() -> {
             try {
                 System.out.println("Getting the current stock of Laptops");
-                TimeUnit.MILLISECONDS.sleep(2000);
+                Thread.sleep(2000);
                 inventory.put("Laptop", 20);
                 System.out.println("Laptop stock updated to 20");
             } catch (InterruptedException e) {
@@ -30,7 +30,7 @@ public class OnlineShoppingInventory {
         CompletableFuture<Void> mobileTask = CompletableFuture.runAsync(() -> {
             try {
                 System.out.println("Getting current stock of mobiles");
-                TimeUnit.MILLISECONDS.sleep(2000);
+                Thread.sleep(2000);
                 inventory.put("Mobile", 35);
                 System.out.println("Mobile stock updated to 35");
             } catch (InterruptedException e) {
@@ -40,7 +40,7 @@ public class OnlineShoppingInventory {
         CompletableFuture<Void> headphoneTask = CompletableFuture.runAsync(() -> {
             try {
                 System.out.println("Getting current stock of headphones");
-                TimeUnit.MILLISECONDS.sleep(2000);
+                Thread.sleep(2000);
                 inventory.put("Headphones", 15);
                 System.out.println("Headphones stock updated to 15");
             } catch (InterruptedException e) {
