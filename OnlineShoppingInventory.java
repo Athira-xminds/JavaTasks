@@ -11,7 +11,6 @@
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 public class OnlineShoppingInventory {
     public static void main(String[] args){
