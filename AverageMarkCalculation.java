@@ -24,6 +24,7 @@
 //                            .orElse(0.0);
 //                })
 //                .thenApply(averageMark -> {
+//                      System.out.println((averageMark >= 80) ? "Grade: A" : (averageMark > 60) ? "Grade: B" : "Not eligible");
 //                    return averageMark;
 //                });
 //        double averageMark = studentMarks.join();
@@ -53,7 +54,8 @@ public class AverageMarkCalculation {
                             .orElse(0.0);
                 },threadPool)
                 .thenApply(averageMark -> {
-                    System.out.println(Thread.currentThread().getName()+": calculated the average mark");
+                    System.out.println(Thread.currentThread().getName() + ": calculated the average mark");
+                    System.out.println((averageMark >= 80) ? "Grade: A" : (averageMark > 60) ? "Grade: B" : "Not eligible");
                     return averageMark;
                 });
         double averageMark = studentMarks.join();
